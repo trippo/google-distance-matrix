@@ -16,12 +16,12 @@ class GoogleDistanceMatrix
     /**
      * @var array
      */
-    private $origin;
+    private $origins;
 
     /**
      * @var array
      */
-    private $destination;
+    private $destinations;
 
     /**
      * @var string
@@ -66,7 +66,7 @@ class GoogleDistanceMatrix
      *
      * @param $apiKey
      */
-    public function __construct($apiKey)
+    public function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
     }
@@ -74,7 +74,7 @@ class GoogleDistanceMatrix
     /**
      * @return string
      */
-    public function getApiKey()
+    public function getApiKey() : string
     {
         return $this->apiKey;
     }
@@ -83,7 +83,7 @@ class GoogleDistanceMatrix
      * @param string $language
      * @return $this
      */
-    public function setLanguage($language = 'en')
+    public function setLanguage($language = 'en-US') : GoogleDistanceMatrix
     {
         $this->language = $language;
         return $this;
@@ -92,7 +92,7 @@ class GoogleDistanceMatrix
     /**
      * @return string
      */
-    public function getLanguage()
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -101,7 +101,7 @@ class GoogleDistanceMatrix
      * @param string $units
      * @return $this
      */
-    public function setUnits($units = self::UNITS_METRIC)
+    public function setUnits($units = self::UNITS_METRIC) : GoogleDistanceMatrix
     {
         $this->units = $units;
         return $this;
@@ -110,7 +110,7 @@ class GoogleDistanceMatrix
     /**
      * @return string
      */
-    public function getUnits()
+    public function getUnits() : string
     {
         return $this->units;
     }
@@ -119,9 +119,9 @@ class GoogleDistanceMatrix
      * @param string $origin (for more values use addOrigin method instead)
      * @return $this
      */
-    public function setOrigin($origin)
+    public function setOrigin($origin) : GoogleDistanceMatrix
     {
-        $this->origin = array($origin);
+        $this->origins = array($origin);
         return $this;
     }
 
@@ -129,25 +129,25 @@ class GoogleDistanceMatrix
      * @param string $origin
      * @return $this
      */
-    public function addOrigin($origin)
+    public function addOrigin($origin) : GoogleDistanceMatrix
     {
-        $this->origin[] = $origin;
+        $this->origins[] = $origin;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getOrigin()
+    public function getOrigins() : array
     {
-        return $this->origin;
+        return $this->origins;
     }
 
     /**
      * @param string $destination (for more values use addDestination method instead)
      * @return $this
      */
-    public function setDestination($destination)
+    public function setDestination($destination) : GoogleDistanceMatrix
     {
         $this->destination = array($destination);
         return $this;
@@ -157,25 +157,25 @@ class GoogleDistanceMatrix
      * @param string $destination
      * @return $this
      */
-    public function addDestination($destination)
+    public function addDestination($destination) : GoogleDistanceMatrix
     {
-        $this->destination[] = $destination;
+        $this->destinations[] = $destination;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getDestination()
+    public function getDestinations() : array
     {
-        return $this->destination;
+        return $this->destinations;
     }
 
     /**
      * @param string $mode
      * @return $this
      */
-    public function setMode($mode = 'driving')
+    public function setMode($mode = 'driving') : GoogleDistanceMatrix
     {
         $this->mode = $mode;
         return $this;
@@ -184,7 +184,7 @@ class GoogleDistanceMatrix
     /**
      * @return string
      */
-    public function getMode()
+    public function getMode() : string
     {
         return $this->mode;
     }
@@ -193,7 +193,7 @@ class GoogleDistanceMatrix
      * @param string $avoid (for more values use | as separator)
      * @return $this
      */
-    public function setAvoid($avoid)
+    public function setAvoid($avoid) : GoogleDistanceMatrix
     {
         $this->avoid = $avoid;
         return $this;
@@ -202,7 +202,7 @@ class GoogleDistanceMatrix
     /**
      * @return string
      */
-    public function getAvoid()
+    public function getAvoid() : string
     {
         return $this->avoid;
     }
@@ -211,24 +211,22 @@ class GoogleDistanceMatrix
      * @return GoogleDistanceMatrixResponse
      * @throws \Exception
      */
-    public function sendRequest()
+    public function sendRequest() : GoogleDistanceMatrixResponse
     {
         $this->validateRequest();
         $data = [
             'key' => $this->apiKey,
             'language' => $this->language,
-            'origins' => count($this->origin) > 1 ? implode('|', $this->origin) : $this->origin[0],
-            'destinations' => count($this->destination) > 1 ? implode('|', $this->destination) : $this->destination[0],
+            'origins' => count($this->origins) > 1 ? implode('|', $this->origins) : $this->origins[0],
+            'destinations' => count($this->destinations) > 1 ? implode('|', $this->destinations) : $this->destinations[0],
             'mode' => $this->mode,
             'avoid' => $this->avoid,
             'units' => $this->units
         ];
         $parameters = http_build_query($data);
         $url = self::URL.'?'.$parameters;
-        $response = $this->request('GET', $url);
         
-        
-        return $response;
+        return $this->request('GET', $url);
     }
     
     /**
@@ -236,7 +234,7 @@ class GoogleDistanceMatrix
      * @param string $url
      * @return GoogleDistanceMatrixResponse
      */
-    private function request($type = 'GET', $url)
+    private function request($type = 'GET', $url) : GoogleDistanceMatrixResponse
     {
         $client = new Client();
         $response = $client->request($type, $url);
@@ -252,7 +250,7 @@ class GoogleDistanceMatrix
         return $responseObject;
     }
 
-    private function validateResponse(GoogleDistanceMatrixResponse $response)
+    private function validateResponse(GoogleDistanceMatrixResponse $response) : void
     {
 
         switch ($response->getStatus()) {
@@ -279,12 +277,12 @@ class GoogleDistanceMatrix
         }
     }
 
-    private function validateRequest()
+    private function validateRequest() : void
     {
-        if (empty($this->getOrigin())) {
+        if (empty($this->getOrigins())) {
             throw new Exception\OriginException('Origin must be set.');
         }
-        if (empty($this->getDestination())) {
+        if (empty($this->getDestinations())) {
             throw new Exception\DestinationException('Destination must be set.');
         }
     }

@@ -15,9 +15,9 @@
 		"email": "cirobsb_br@yahoo.com.br",
 		"issues": "https://github.com/cirovargas/google-distance-matrix/issues"
 	},
-	"version": "v0.0.3",
+	"version": "v0.0.4",
 	"require": {
-		"php": ">=5.5.0",
+		"php": ">=7.0",
 		"guzzlehttp/guzzle": "^6.2"
 	},
 	"autoload": {

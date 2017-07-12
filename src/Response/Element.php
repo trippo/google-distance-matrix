@@ -41,9 +41,9 @@ class Element
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getStatus()
+    public function getStatus() : string
     {
         return $this->status;
     }
@@ -51,7 +51,7 @@ class Element
     /**
      * @return Duration
      */
-    public function getDuration()
+    public function getDuration() : Duration
     {
         return $this->duration;
     }
@@ -59,7 +59,7 @@ class Element
     /**
      * @return Distance
      */
-    public function getDistance()
+    public function getDistance() : Distance
     {
         return $this->distance;
     }

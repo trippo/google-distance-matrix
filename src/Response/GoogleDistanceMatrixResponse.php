@@ -54,17 +54,17 @@ class GoogleDistanceMatrixResponse
         $this->construct();
     }
 
-    private function addOriginAddress(Address $originAddress)
+    private function addOriginAddress(Address $originAddress) : void
     {
         $this->originAddresses[] = $originAddress;
     }
 
-    private function addDestinationAddress(Address $destinationAddress)
+    private function addDestinationAddress(Address $destinationAddress) : void
     {
         $this->destinationAddresses[] = $destinationAddress;
     }
 
-    private function addRow(Row $row)
+    private function addRow(Row $row) : void
     {
         $this->rows[] = $row;
     }
@@ -72,7 +72,7 @@ class GoogleDistanceMatrixResponse
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getStatus() : string
     {
         return $this->status;
     }
@@ -80,7 +80,7 @@ class GoogleDistanceMatrixResponse
     /**
      * @return \stdClass
      */
-    public function getResponseObject()
+    public function getResponseObject() : \stdClass
     {
         return $this->responseObject;
     }
@@ -88,7 +88,7 @@ class GoogleDistanceMatrixResponse
     /**
      * @return array
      */
-    public function getOriginAddresses()
+    public function getOriginAddresses() : array
     {
         return $this->originAddresses;
     }
@@ -96,7 +96,7 @@ class GoogleDistanceMatrixResponse
     /**
      * @return array
      */
-    public function getDestinationAddresses()
+    public function getDestinationAddresses() : array
     {
         return $this->destinationAddresses;
     }
@@ -104,12 +104,12 @@ class GoogleDistanceMatrixResponse
     /**
      * @return array
      */
-    public function getRows()
+    public function getRows() : array
     {
         return $this->rows;
     }
 
-    private function construct()
+    private function construct() : void
     {
         $this->status = $this->responseObject->status;
 

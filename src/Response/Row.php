@@ -17,7 +17,7 @@ class Row
     /**
      * @return array
      */
-    public function getElements()
+    public function getElements() : array
     {
         return $this->elements;
     }

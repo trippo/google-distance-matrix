@@ -14,13 +14,13 @@ class Duration
      * @param $text
      * @param $value
      */
-    public function __construct($text, $value)
+    public function __construct(string $text, int $value)
     {
         $this->text = $text;
         $this->value = $value;
     }
 
-    public function __toString()
+    public function __toString() : string
     {
         return $this->text;
     }
@@ -28,7 +28,7 @@ class Duration
     /**
      * @return mixed
      */
-    public function getText()
+    public function getText() : string
     {
         return $this->text;
     }
@@ -36,7 +36,7 @@ class Duration
     /**
      * @return mixed
      */
-    public function getValue()
+    public function getValue() : int
     {
         return $this->value;
     }
