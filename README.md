@@ -32,7 +32,7 @@ $distance = $distanceMatrix->setLanguage('cs')
 
 ```php
 $distanceMatrix = new GoogleDistanceMatrix('YOUR API KEY');
-$distance = $distanceMatrix->setLanguage('cs')
+$distance = $distanceMatrix
     ->setOrigin('K Habrovci 447, 251 63 Strančice, Česká republika')
     ->setDestination('Roztylská 2321/19, Chodov, 148 00 Praha-Praha 11, Česká republika')
     ->setMode(GoogleDistanceMatrix::MODE_WALKING)

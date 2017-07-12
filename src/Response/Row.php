@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ciro
- * Date: 10/07/17
- * Time: 17:19.
- */
 
 namespace CiroVargas\GoogleDistanceMatrix\Response;
 
