@@ -1,6 +1,6 @@
 <?php
 
-namespace Valerian\GoogleDistanceMatrix\Response;
+namespace CiroVargas\GoogleDistanceMatrix\Response;
 
 class Address
 {

@@ -6,7 +6,7 @@
  * Time: 17:19.
  */
 
-namespace Valerian\GoogleDistanceMatrix\Response;
+namespace CiroVargas\GoogleDistanceMatrix\Response;
 
 class Row
 {

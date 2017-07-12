@@ -1,8 +1,8 @@
 <?php
 
-namespace Valerian\GoogleDistanceMatrix\Response;
+namespace CiroVargas\GoogleDistanceMatrix\Response;
 
-use Valerian\GoogleDistanceMatrix\Exception\Exception;
+use CiroVargas\GoogleDistanceMatrix\Exception\Exception;
 
 class Element
 {

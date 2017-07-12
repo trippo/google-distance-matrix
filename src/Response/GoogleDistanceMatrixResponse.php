@@ -1,6 +1,6 @@
 <?php
 
-namespace Valerian\GoogleDistanceMatrix\Response;
+namespace CiroVargas\GoogleDistanceMatrix\Response;
 
 class GoogleDistanceMatrixResponse
 {
@@ -20,14 +20,29 @@ class GoogleDistanceMatrixResponse
         self::RESPONSE_STATUS_UNKNOWN_ERROR,
     ];
 
+    /**
+     * @var string
+     */
     private $status;
 
+    /**
+     * @var \stdClass
+     */
     private $responseObject;
 
+    /**
+     * @var array|Address[]
+     */
     private $originAddresses;
 
+    /**
+     * @var array|Address[]
+     */
     private $destinationAddresses;
 
+    /**
+     * @var array|Row[]
+     */
     private $rows;
 
     public function __construct(\stdClass $responseObject)
@@ -63,7 +78,7 @@ class GoogleDistanceMatrixResponse
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     public function getResponseObject()
     {

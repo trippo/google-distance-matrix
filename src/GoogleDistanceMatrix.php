@@ -1,9 +1,9 @@
 <?php
 
-namespace Valerian\GoogleDistanceMatrix;
+namespace CiroVargas\GoogleDistanceMatrix;
 
 use GuzzleHttp\Client;
-use Valerian\GoogleDistanceMatrix\Response\GoogleDistanceMatrixResponse;
+use CiroVargas\GoogleDistanceMatrix\Response\GoogleDistanceMatrixResponse;
 
 class GoogleDistanceMatrix
 {
@@ -136,7 +136,7 @@ class GoogleDistanceMatrix
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getOrigin()
     {
@@ -164,7 +164,7 @@ class GoogleDistanceMatrix
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getDestination()
     {
@@ -208,7 +208,7 @@ class GoogleDistanceMatrix
     }
 
     /**
-     * @return \stdClass
+     * @return GoogleDistanceMatrixResponse
      * @throws \Exception
      */
     public function sendRequest()
@@ -234,7 +234,7 @@ class GoogleDistanceMatrix
     /**
      * @param string $type
      * @param string $url
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return GoogleDistanceMatrixResponse
      */
     private function request($type = 'GET', $url)
     {
